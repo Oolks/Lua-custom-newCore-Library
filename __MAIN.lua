@@ -21,7 +21,7 @@ end
 
 function newCore.warn(text)
     if text == nil then
-        return print("The text in warn() is nil or contains a int (number) value")
+        return false
         else
             print(text.." | Warning")
     end
@@ -61,31 +61,28 @@ function newCore.InstanceNew(name, typeOFile, ToWrite, useWplus)
             print("Success")
             end
         else
-                print("Recheck the given values in InstanceNew() function and make sure it is not empty or nil")
+                return false
     end
 end
 
 
 function newCore.Join(value, value1)
     if value == true or false then 
-        return print("Cannot Join Bool Statements")
+        return false
     end
     if value  then
        local newValue = print(value..value1)
-       print(newValue)
        return newValue 
     end
 end
 
 function newCore.ReturnUpdateInt()
-    local updateverison = 0.1
-    return print(updateverison.." version currently in use")
+    return 0.2
 end
 
 
 function newCore.GetARandomNumber(from,to)
-    local numberchosen = math.rad(from,to)
-    print(numberchosen)
+    return math.rad(from,to)
 end
 
 
@@ -95,7 +92,6 @@ function newCore.GenerateRandomString(length)
         for i = 1, length do
             RandomGenerated = RandomGenerated .. string.char(math.random(97, 122))
             if #RandomGenerated == length then
-                print(RandomGenerated)
                 return RandomGenerated
             end
         end
@@ -109,18 +105,16 @@ end
 
 
 function newCore.GetTotalValueLenght(type1, value)
-    local retrievedValue
     if type1 == "string" and value then
-        retrievedValue = #value
-        print(retrievedValue)
+        return #value
         else
-            newCore.warn("Make sure your value is a string!")
+            return false
         end
 end
 
 
 function newCore.RetrieveLuaVersion()
-    print("Current Lua Version: ".._VERSION)
+    return _VERSION
 end
 
 
