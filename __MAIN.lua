@@ -1,4 +1,4 @@
---[[// MixedMitches 
+--[[// Oolks 
 
     3:03pm
     
@@ -9,7 +9,7 @@ local newCore = {}
 
 function newCore.wait(seconds)
     if seconds == nil or type(seconds) == "string" then
-        print("Error while running wait() function because of wait() variable being nil or a string!")
+        return false
         else
             if seconds > 0 then
                 local start = os.time()
@@ -17,16 +17,6 @@ function newCore.wait(seconds)
         end
     end
 end
-
-
-function newCore.warn(text)
-    if text == nil then
-        return false
-        else
-            print(text.." | Warning")
-    end
-end
-
 
 function newCore.InstanceNew(name, typeOFile, ToWrite, useWplus)
     if name and typeOFile and ToWrite then
@@ -42,14 +32,13 @@ function newCore.InstanceNew(name, typeOFile, ToWrite, useWplus)
                 print("Building a file named "..name.." as a ."..typeOFile.." file")
             end
 
-            print(filenameCombined)
             if useWplus == true then 
                file = io.open(filenameCombined, "w+")
                 io.input(file)
                 io.output(file)
                 io.write(ToWrite)
                 io.close(file)
-                print("Success")
+                return true
                 else
                     
             
@@ -58,7 +47,7 @@ function newCore.InstanceNew(name, typeOFile, ToWrite, useWplus)
             io.output(file1)
             io.write(ToWrite) 
             io.close()
-            print("Success")
+            return true
             end
         else
                 return false
@@ -100,7 +89,14 @@ end
 
 
 function newCore.GenerateRandomizedKeyCodes()
-    print("WIP")
+    local block1 = math.random(0, 0xffff)
+    local block2 = math.random(0, 0xffff)
+    local block3 = math.random(0, 0xffff)
+    local block4 = math.random(0, 0xffff)
+    local block5 = math.random(0, 0xffff)
+    local block6 = math.random(0, 0xffff)
+    
+    return string.format("%04x%04x-%04x-%04x-%04x-%04x%04x%04x", block1, block2, block3, block4, block5, block6, block7, block8)
 end
 
 
@@ -128,11 +124,9 @@ function newCore.CleanTable(TableVariable, safeMode)
     if safeMode == false then
     for k in pairs (TableVariable) do
         TableVariable[k] = nil
-        print("Successfully cleaned the table")
+        return true
     end
     end
 end
 
 return newCore
-
-
